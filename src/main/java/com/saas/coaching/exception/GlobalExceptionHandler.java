@@ -42,6 +42,20 @@ public class GlobalExceptionHandler {
         return buildErrorResponse(HttpStatus.CONFLICT, ex.getMessage(), request, null);
     }
 
+    @ExceptionHandler(FeeAlreadyExistsException.class)
+    public ResponseEntity<ApiErrorResponse> handleFeeAlreadyExists(
+            FeeAlreadyExistsException ex,
+            HttpServletRequest request) {
+        return buildErrorResponse(HttpStatus.CONFLICT, ex.getMessage(), request, null);
+    }
+
+    @ExceptionHandler(InvalidFeePaymentException.class)
+    public ResponseEntity<ApiErrorResponse> handleInvalidFeePayment(
+            InvalidFeePaymentException ex,
+            HttpServletRequest request) {
+        return buildErrorResponse(HttpStatus.BAD_REQUEST, ex.getMessage(), request, null);
+    }
+
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public ResponseEntity<ApiErrorResponse> handleValidationErrors(
             MethodArgumentNotValidException ex,
